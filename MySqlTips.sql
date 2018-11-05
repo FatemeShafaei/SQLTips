@@ -85,6 +85,38 @@ FROM   tree
 -----------------------------------------------------------------------
 --*********************************************************************
 -----------------------------------------------------------------------
+HAVING MAX(o.created_at) < CURRENT_DATE - INTERVAL '1 week'
+-----------------------------------------------------------------------
+--*********************************************************************
+-----------------------------------------------------------------------
+/*
+https://stackoverflow.com/questions/53158874/sql-server-2008-order-with-repeated-only-if-previous-is-different
+*/
+with data as (
+    select *, lag(Price) over (order by OrderId) as lastPrice
+    from T
+)
+select *
+from data
+where coalesce(Price, -1) <> lastPrice;
+----------------------------------------------------------------------
+select t.*
+from T t cross apply (
+    select max(OrderId) priorOrderId from T t2 where t2.OrderId < t.OrderId
+) left outer join T t3 on t3.OrderId = t2.priorOrderId
+where coalesce(t3.Price, -1) <> t.Price;
+-----------------------------------------------------------------------
+--*********************************************************************
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
 
 
