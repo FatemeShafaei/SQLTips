@@ -126,8 +126,24 @@ https://www.red-gate.com/simple-talk/sql/t-sql-programming/sql-server-cte-basics
 -----------------------------------------------------------------------
 --*********************************************************************
 -----------------------------------------------------------------------
+/*
+UserName     Company
+Eduard       Google
+Alex         Google
+Mark         Google
+Silvia       Microsoft
+Any I need it to look like this:
 
+UserName             Company
+Eduard, Alex, Mark   Google
+Silvia               Microsoft
 
+In SQL Server 2017 you can use STRING_AGG:
+https://docs.microsoft.com/en-us/sql/t-sql/functions/string-agg-transact-sql?view=sql-server-2017
+*/
+SELECT STRING_AGG(UserName,', ') AS UserNames, Company
+FROM @t
+GROUP BY Company
 
 
 
