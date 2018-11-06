@@ -108,9 +108,24 @@ where coalesce(t3.Price, -1) <> t.Price;
 -----------------------------------------------------------------------
 --*********************************************************************
 -----------------------------------------------------------------------
+/*
+Introduced in SQL Server 2005, the common table expression (CTE) is a temporary named result set 
+that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. 
+You can also use a CTE in a CREATE VIEW statement, as part of the view’s SELECT query. 
+In addition, as of SQL Server 2008, you can add a CTE to the new MERGE statement.
 
-
-
+Creating a Recursive Common Table Expression
+A recursive CTE is one that references itself within that CTE. 
+The recursive CTE is useful when working with hierarchical data 
+because the CTE continues to execute until the query returns 
+the entire hierarchy.
+A recursive CTE query must contain at least two members (statements), connected by the 
+UNION ALL, UNION, INTERSECT, or EXCEPT operator.
+*/
+https://www.red-gate.com/simple-talk/sql/t-sql-programming/sql-server-cte-basics/
+-----------------------------------------------------------------------
+--*********************************************************************
+-----------------------------------------------------------------------
 
 
 
