@@ -74,7 +74,7 @@ order by row_number() over (partition by dt order by id desc);
  SELECT 
  *,
  --top (1) WITH ties t.* 
- row_number() over (partition by dt order by cnt desc)
+ row_number() over (partition by dt order by id desc)
 from temp t
 order by row_number() over (partition by dt order by id desc);
 
