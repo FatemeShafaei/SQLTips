@@ -74,23 +74,6 @@ INSERT INTO @FooTable
 SELECT * FROM @FooTable
 
 -----------------
-SELECT *,
-           ROW_NUMBER() OVER (PARTITION BY Name ORDER BY percentage DESC) AS rn
-    FROM
-    (
-        SELECT Name,               
-               Percentage1,
-               Percentage2,
-               Percentage3,
-               Percentage4
-        FROM @FooTable
-    ) p
-        UNPIVOT
-        (
-            percentage
-            FOR subject IN (Percentage1, Percentage2, Percentage3, Percentage4)
-        ) up
------------------
 ;WITH cte
 AS (SELECT *,
            ROW_NUMBER() OVER (PARTITION BY Name ORDER BY percentage DESC) AS rn
